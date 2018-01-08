@@ -3,7 +3,6 @@
 #include <string.h>
 #include <dirent.h>
 #include <dlfcn.h>
-#include <immintrin.h>
 #include <sys/time.h>
 #include <sys/stat.h>
 #include <sys/types.h>
