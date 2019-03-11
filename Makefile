@@ -1,4 +1,4 @@
-COMPILER=NEON
+COMPILER=ICC
 
 TARGET 	= 	ibench
 SRC_DIR = 	src
