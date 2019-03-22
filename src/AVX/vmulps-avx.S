@@ -29,6 +29,12 @@ latency:
         vaddps ymm1, ymm0, ymm0
         # create SP 0.5
         vdivps ymm2, ymm0, ymm1
+
+        # Mark registers as AVX
+        vmovaps ymm0, ymm0
+        vmovaps ymm1, ymm1
+        vmovaps ymm2, ymm2
+
 loop:
         inc       i
         INSTR     ymm0, ymm0, ymm1

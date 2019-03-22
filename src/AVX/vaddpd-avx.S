@@ -26,7 +26,12 @@ latency:
         # expand from SSE to AVX
         vinsertf128 ymm0, ymm0, xmm0, 0x1
         # copy SP 1.0
-        vmovaps ymm1, ymm0
+        vmovapd ymm1, ymm0
+
+        # Mark registers as AVX
+        vmovapd ymm0, ymm0
+        vmovapd ymm1, ymm1
+
 loop:
         inc       i
         INSTR     ymm0, ymm0, ymm1

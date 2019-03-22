@@ -1,4 +1,4 @@
-#define INSTR vmulps
+#define INSTR vmulsd
 #define NINST 6
 #define N edi
 #define i r8d
@@ -28,20 +28,26 @@ latency:
         # create SP 0.5
         vdivps xmm2, xmm0, xmm1
 
-        # Mark registers as SSE
-        movaps xmm0, xmm0
-        movaps xmm1, xmm1
-        movaps xmm2, xmm2
+        # Mark registers as scalar
+        movsd xmm0, xmm0
+        movsd xmm1, xmm1
+        movsd xmm2, xmm2
+        movsd xmm3, xmm3
+        movsd xmm4, xmm4
+        movsd xmm5, xmm5
+        movsd xmm6, xmm6
+        movsd xmm7, xmm7
+        movsd xmm8, xmm8
 
 loop:
         inc       i
-        INSTR     xmm0, xmm0, xmm1
-        INSTR     xmm0, xmm0, xmm2
-        INSTR     xmm0, xmm0, xmm1
+        INSTR     xmm3, xmm0, xmm1
+        INSTR     xmm4, xmm1, xmm0
+        INSTR     xmm5, xmm0, xmm2
         cmp       i, N
-        INSTR     xmm0, xmm0, xmm2
-        INSTR     xmm0, xmm0, xmm1
-        INSTR     xmm0, xmm0, xmm2
+        INSTR     xmm6, xmm2, xmm0
+        INSTR     xmm7, xmm1, xmm2
+        INSTR     xmm8, xmm2, xmm1
         jl        loop
 done:
         mov  rsp, rbp

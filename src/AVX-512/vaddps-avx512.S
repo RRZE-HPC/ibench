@@ -1,4 +1,4 @@
-#define INSTR vmulps
+#define INSTR vaddps
 #define NINST 6
 #define N edi
 #define i r8d
@@ -19,29 +19,30 @@ latency:
         xor       i, i
         test      N, N
         jle       done
-        # create SP 1.0
+        # create SSE SP 1.0
         vpcmpeqw xmm0, xmm0, xmm0       # all ones
         vpslld xmm0, xmm0, 25           # logical left shift: 11111110..0 (25 = 32 - (8 - 1))
         vpsrld xmm0, xmm0, 2            # logical right shift: 1 bit for sign; leading mantissa bit is zero
-        # create SP 2.0
-        vaddps xmm1, xmm0, xmm0
-        # create SP 0.5
-        vdivps xmm2, xmm0, xmm1
+        # expand from SSE to AVX
+        vinsertf128 ymm0, ymm0, xmm0, 0x1
+        # expand from AVX to AVX-512
+        vinsertf64x4 zmm0, zmm0, ymm0, 0x1
+        # copy SP 1.0
+        vmovaps zmm1, zmm0
 
-        # Mark registers as SSE
-        movaps xmm0, xmm0
-        movaps xmm1, xmm1
-        movaps xmm2, xmm2
+        # Mark registers as AVX-512
+        vmovapd zmm0, zmm0
+        vmovapd zmm1, zmm1
 
 loop:
         inc       i
-        INSTR     xmm0, xmm0, xmm1
-        INSTR     xmm0, xmm0, xmm2
-        INSTR     xmm0, xmm0, xmm1
+        INSTR     zmm0, zmm0, zmm1
+        INSTR     zmm0, zmm0, zmm1
+        INSTR     zmm0, zmm0, zmm1
         cmp       i, N
-        INSTR     xmm0, xmm0, xmm2
-        INSTR     xmm0, xmm0, xmm1
-        INSTR     xmm0, xmm0, xmm2
+        INSTR     zmm0, zmm0, zmm1
+        INSTR     zmm0, zmm0, zmm1
+        INSTR     zmm0, zmm0, zmm1
         jl        loop
 done:
         mov  rsp, rbp

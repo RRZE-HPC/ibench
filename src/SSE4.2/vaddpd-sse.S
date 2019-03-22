@@ -24,7 +24,12 @@ latency:
         vpsllq xmm0, xmm0, 54           # logical left shift: 11111110..0 (54 = 64 - (10 - 1))
         vpsrlq xmm0, xmm0, 2            # logical right shift: 1 bit for sign; leading mantissa bit is zero
         # copy SP 1.0
-        vmovaps xmm1, xmm0
+        vmovapd xmm1, xmm0
+
+        # Mark registers as SSE
+        movapd xmm0, xmm0
+        movapd xmm1, xmm1
+
 loop:
         inc       i
         INSTR     xmm0, xmm0, xmm1

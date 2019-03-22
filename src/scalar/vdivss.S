@@ -1,8 +1,7 @@
-#define INSTR vmulps
+#define INSTR vdivss
 #define NINST 6
 #define N edi
 #define i r8d
-
 
 .intel_syntax noprefix
 .globl ninst
@@ -23,15 +22,26 @@ latency:
         vpcmpeqw xmm0, xmm0, xmm0       # all ones
         vpslld xmm0, xmm0, 25           # logical left shift: 11111110..0 (25 = 32 - (8 - 1))
         vpsrld xmm0, xmm0, 2            # logical right shift: 1 bit for sign; leading mantissa bit is zero
-        # create SP 2.0
-        vaddps xmm1, xmm0, xmm0
-        # create SP 0.5
-        vdivps xmm2, xmm0, xmm1
 
-        # Mark registers as SSE
-        movaps xmm0, xmm0
-        movaps xmm1, xmm1
-        movaps xmm2, xmm2
+        vaddss xmm1, xmm0, xmm0     # create 2.0
+        vaddss xmm2, xmm0, xmm1     # create 3.0
+        vaddss xmm4, xmm1, xmm1     # create 4.0
+        vaddss xmm4, xmm4, xmm4     # create 8.0
+        vaddss xmm4, xmm4, xmm4     # create 16.0
+        vaddss xmm4, xmm4, xmm4     # create 32.0
+        vaddss xmm4, xmm4, xmm4     # create 64.0
+        vaddss xmm4, xmm4, xmm4     # create 128.0
+        vaddss xmm4, xmm4, xmm4     # create 256.0
+        vaddss xmm4, xmm4, xmm4     # create 512.0
+        vaddss xmm4, xmm4, xmm4     # create 1024.0
+        vdivss xmm1, xmm4, xmm2     # create 341.3333
+        vdivss xmm2, xmm0, xmm1     # create 1/341.3333
+        vaddss xmm0, xmm1, xmm1     # create 2*341.3333
+
+        # Mark registers as scalar
+        movss xmm0, xmm0
+        movss xmm1, xmm1
+        movss xmm2, xmm2
 
 loop:
         inc       i
