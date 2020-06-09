@@ -53,17 +53,17 @@ latency:
 loop:
         subs      x4, x4, #1
         INSTR     v1.2d, v0.2d
-        fadd      v1.2d, v1.2d, v10.2d
+        # fadd      v1.2d, v1.2d, v10.2d
         INSTR     v2.2d, v1.2d
-        fadd      v2.2d, v2.2d, v10.2d
+        # fadd      v2.2d, v2.2d, v10.2d
         INSTR     v3.2d, v2.2d
-        fadd      v3.2d, v3.2d, v10.2d
+        # fadd      v3.2d, v3.2d, v10.2d
         INSTR     v4.2d, v3.2d
-        fadd      v4.2d, v4.2d, v10.2d
+        # fadd      v4.2d, v4.2d, v10.2d
         INSTR     v5.2d, v4.2d
-        fadd      v5.2d, v5.2d, v10.2d
+        # fadd      v5.2d, v5.2d, v10.2d
         INSTR     v0.2d, v5.2d
-        fadd      v0.2d, v0.2d, v10.2d
+        # fadd      v0.2d, v0.2d, v10.2d
         bne       loop
 done:
 
