@@ -1,5 +1,5 @@
 #define INSTR str
-#define NINST 6
+#define NINST 8
 #define N x0
 
 .globl ninst
@@ -17,6 +17,13 @@ latency:
         st1            {v8.2d, v9.2d, v10.2d, v11.2d}, [sp]
         sub            sp, sp, #64
         st1            {v12.2d, v13.2d, v14.2d, v15.2d}, [sp]
+        stp x29, x30, [sp, -96]!
+        stp x19, x20, [sp, 16]
+        stp x21, x22, [sp, 32]
+        stp x24, x25, [sp, 48]
+        stp x26, x27, [sp, 64]
+        str x28, [sp, 80]
+
 
         mov     x4, N
 
@@ -45,6 +52,7 @@ latency:
         mov     x7, #1
         mov     x8, #1
 
+        sub sp, sp, #64
 loop:
         subs      x4, x4, #1
         INSTR    q0,  [sp]
@@ -59,14 +67,21 @@ loop:
         mul      x5, x5, x5
         INSTR    q5, [sp]  
         mul      x6, x6, x6
-        # INSTR    q6, [sp, x15]  
-        # mul      x7, x7, x7
-        # INSTR    q7, [sp, x16]  
-        # mul      x8, x8, x8
+        INSTR    q6, [sp, x15]  
+        mul      x7, x7, x7
+        INSTR    q7, [sp, x16]  
+        mul      x8, x8, x8
         bne       loop
 done:
 
+        add sp, sp, #64
         # pop callee-save registers from stack
+        ldp x19, x20, [sp, 16]
+        ldp x21, x22, [sp, 32]
+        ldp x24, x25, [sp, 48]
+        ldp x26, x27, [sp, 64]
+        ldr x28, [sp, 80]
+        ldp x29, x30, [sp], 96
         ld1            {v12.2d, v13.2d, v14.2d, v15.2d}, [sp]
         add            sp, sp, #64
         ld1            {v8.2d, v9.2d, v10.2d, v11.2d}, [sp]
