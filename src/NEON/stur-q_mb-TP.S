@@ -31,6 +31,7 @@ latency:
         fmov    v2.2d, #1.00000000
         sub     sp, sp, #128
 
+        sub sp, sp, #64
 loop:
         subs      x4, x4, #1
         INSTR    q1,  [sp] 
@@ -51,7 +52,7 @@ loop:
         INSTR    q18, [sp]  
         bne       loop
 done:
-        add     sp, sp, #128
+        add sp, sp, #64
         # pop callee-save registers from stack
         ldp x19, x20, [sp, 16]
         ldp x21, x22, [sp, 32]

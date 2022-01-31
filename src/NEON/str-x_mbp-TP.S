@@ -24,6 +24,13 @@ latency:
         stp x26, x27, [sp, 64]
         str x28, [sp, 80]
 
+        stp x29, x30, [sp, -96]!
+        stp x19, x20, [sp, 16]
+        stp x21, x22, [sp, 32]
+        stp x24, x25, [sp, 48]
+        stp x26, x27, [sp, 64]
+        str x28, [sp, 80]
+
         mov     x4, N
 
         fmov    v0.2d, #1.00000000

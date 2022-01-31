@@ -38,6 +38,7 @@ latency:
         sub     x17, sp, #896
         sub     x18, sp, #1024
 
+        sub sp, sp, #64
 loop:
         subs      x4, x4, #1
         INSTR    q0,  [x11]
@@ -59,6 +60,7 @@ loop:
         bne       loop
 done:
 
+        add sp, sp, #64
         # pop callee-save registers from stack
         ldp x19, x20, [sp, 16]
         ldp x21, x22, [sp, 32]
