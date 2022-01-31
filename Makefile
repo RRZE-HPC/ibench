@@ -1,4 +1,4 @@
-COMPILER=ICC
+COMPILER=GCC
 
 TARGET 	= 	ibench
 SRC_DIR = 	src
