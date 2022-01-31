@@ -29,64 +29,44 @@ latency:
         fmov    v0.2d, #1.00000000
         fmov    v1.2d, #1.00000000
         fmov    v2.2d, #1.00000000
-        mov     x24, sp
 
-        mov     x14, sp
-        add     x14, x14, #128
-        mov     x15, sp
-        add     x15, x15, #192
-        mov     x16, sp
-        sub     x16, x16, #256
-        mov     x17, sp
-        sub     x17, x17, #320
-        mov     x1, #1
-        mov     x2, #1
-        mov     x3, #1
-        mov     x5, #1
-        mov     x6, #1
-        mov     x7, #1
-        mov     x8, #1
-        mov     x9, #1
-        mov     x10, #1
-        mov     x11, #1
-        mov     x12, #1
-        mov     x13, #1
-        mov     x12, #1
-        mov     x13, #1
-        mov     x18, #1
-        mov     x25, #1
-        mov     x27, #1
-        mov     x28, #1
+        sub     x10, sp, #16
+        sub     x11, sp, #32
+        sub     x12, sp, #48
+        sub     x13, sp, #64
+        sub     x14, sp, #80
+        sub     x15, sp, #96
+        sub     x16, sp, #112
+        sub     x17, sp, #128
 
 loop:
         subs      x4, x4, #1
-        INSTR    x24, [x14]
+        INSTR    x10, [x10]
         mul      x1, x1, x1
         add      x2, x2, x2
-        INSTR    x24, [x15]
+        INSTR    x11, [x11]
         mul      x3, x3, x3
         add      x5, x5, x5
-        INSTR    x24, [x16]
+        INSTR    x12, [x12]
         mul      x6, x6, x6
         add      x7, x7, x7
-        INSTR    x24, [x14]
+        INSTR    x13, [x13]
         mul      x8, x8, x8
         add      x9, x9, x9
-        INSTR    x24, [x15]
-        mul      x10, x10, x10
-        add      x11, x11, x11
-        INSTR    x24, [x16]
-        mul      x12, x12, x12
-        add      x13, x13, x13
-        INSTR    x24, [x17]
+        INSTR    x14, [x14]
         mul      x18, x18, x18
-        add      x25, x25, x25
-        INSTR    x24, [x17]
-        mul      x27, x27, x27
-        add      x28, x28, x28
+        add      x19, x19, x19
+        INSTR    x15, [x15]
+        mul      x20, x20, x20
+        add      x21, x21, x21
+        INSTR    x16, [x16]
+        mul      x22, x22, x22
+        add      x24, x24, x24
+        INSTR    x17, [x17]
+        mul      x25, x25, x25
+        add      x26, x26, x26
         bne       loop
 done:
-        mov     sp, x24
         # pop callee-save registers from stack
         ldp x19, x20, [sp, 16]
         ldp x21, x22, [sp, 32]
