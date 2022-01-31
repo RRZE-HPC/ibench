@@ -13,63 +13,86 @@ ninst:
 latency:
 
         # push callee-save registers onto stack
-        sub            sp, sp, #64
-        st1            {v8.2d, v9.2d, v10.2d, v11.2d}, [sp]
-        sub            sp, sp, #64
-        st1            {v12.2d, v13.2d, v14.2d, v15.2d}, [sp]
+        sub     sp, sp, #64
+        st1     {v8.2d, v9.2d, v10.2d, v11.2d}, [sp]
+        sub     sp, sp, #64
+        st1     {v12.2d, v13.2d, v14.2d, v15.2d}, [sp]
+        sub     sp, sp, #64
+        st1     {v16.2d, v17.2d, v18.2d, v19.2d}, [sp]
+        sub     sp, sp, #64
+        st1     {v20.2d, v21.2d, v22.2d, v23.2d}, [sp]
+        sub     sp, sp, #64
+        st1     {v24.2d, v25.2d, v26.2d, v27.2d}, [sp]
+        sub     sp, sp, #64
+        st1     {v28.2d, v29.2d, v30.2d, v31.2d}, [sp]
+        stp     x19, x20, [sp, -96]!
+        stp     x21, x22, [sp, 16]
+        stp     x23, x24, [sp, 32]
+        stp     x25, x26, [sp, 48]
+        stp     x27, x28, [sp, 64]
+        stp     x29, x30, [sp, 80]
 
         mov     x4, N
 
         fmov    v0.2d, #1.00000000
         fmov    v1.2d, #1.00000000
         fmov    v2.2d, #1.00000000
-        mov     x24, #-64
-        mov     x25, #-128
-        mov     x28, #-192
-        mov     x27, #-256
 
+        mov      x30, sp
+        sub     sp, sp, #128
+        # remove the line below for dependency chain
+        sub     x30, sp, #128
 loop:
         subs      x4, x4, #1
         INSTR    q1,  [sp]
-        ldr      x0, [sp]
+        ldr      x0, [x30]
         INSTR    q2,  [sp]  
-        ldr      x1, [sp]
+        ldr      x1, [x30]
         INSTR    q3,  [sp]  
-        ldr      x2, [sp]
+        ldr      x2, [x30]
         INSTR    q4, [sp]  
-        ldr      x3, [sp]
+        ldr      x3, [x30]
         INSTR    q5, [sp]  
-        ldr      x5, [sp]
+        ldr      x5, [x30]
         INSTR    q6, [sp]  
-        ldr      x6, [sp]
+        ldr      x6, [x30]
         INSTR    q7, [sp]  
-        ldr      x7, [sp]
+        ldr      x7, [x30]
         INSTR    q8, [sp]  
-        ldr      x8, [sp]
+        ldr      x8, [x30]
         INSTR    q9,  [sp] 
-        ldr      x9, [sp]
+        ldr      x9, [x30]
         INSTR    q10,  [sp]  
-        ldr      x10, [sp]
+        ldr      x10, [x30]
         INSTR    q11,  [sp]  
-        ldr      x11, [sp]
+        ldr      x11, [x30]
         INSTR    q12, [sp]  
-        ldr      x12, [sp]
+        ldr      x12, [x30]
         INSTR    q13, [sp]  
-        ldr      x13, [sp]
+        ldr      x13, [x30]
         INSTR    q14, [sp]  
-        ldr      x14, [sp]
+        ldr      x14, [x30]
         INSTR    q16, [sp]  
-        ldr      x15, [sp]
+        ldr      x15, [x30]
         INSTR    q18, [sp]  
-        ldr      x16, [sp]
+        ldr      x16, [x30]
         bne       loop
 done:
-
+        add     sp, sp, #128
         # pop callee-save registers from stack
-        ld1            {v12.2d, v13.2d, v14.2d, v15.2d}, [sp]
-        add            sp, sp, #64
-        ld1            {v8.2d, v9.2d, v10.2d, v11.2d}, [sp]
-        add            sp, sp, #64
+        ldp     x19, x20, [sp]
+        ldp     x21, x22, [sp, 16]
+        ldp     x23, x24, [sp, 32]
+        ldp     x25, x26, [sp, 48]
+        ldp     x27, x28, [sp, 64]
+        ldp     x29, x30, [sp, 80]
+        add     sp, sp, #96
+        ld1     {v28.2d, v29.2d, v30.2d, v31.2d}, [sp], #64
+        ld1     {v24.2d, v25.2d, v26.2d, v27.2d}, [sp], #64
+        ld1     {v20.2d, v21.2d, v22.2d, v23.2d}, [sp], #64
+        ld1     {v16.2d, v17.2d, v18.2d, v19.2d}, [sp], #64
+        ld1     {v12.2d, v13.2d, v14.2d, v15.2d}, [sp], #64
+        ld1     {v8.2d, v9.2d, v10.2d, v11.2d}, [sp], #64
         
         ret
 
