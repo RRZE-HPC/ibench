@@ -30,48 +30,37 @@ latency:
         fmov    v1.2d, #1.00000000
         fmov    v2.2d, #1.00000000
 
-        sub     sp, sp, #-128
-        mov     x24, sp
-        mov     x10, sp
-        mov     x11, sp
-        mov     x12, sp
-        mov     x13, sp
-        add     x10, x10, #16
-        add     x11, x11, #48
-        sub     x12, x12, #16
-        sub     x13, x13, #48
-        mov     x16, sp
-        add     x16, x16, #32
-        mov     x25, sp
-        add     x25, x25, #64
-        mov     x27, sp
-        sub     x27, x27, #32
-        mov     x28, sp
-        sub     x28, x28, #64
+        add     x11, sp, #32
+        add     x12, sp, #64
+        add     x13, sp, #96
+        add     x14, sp, #128
+        add     x15, sp, #160
+        add     x16, sp, #192
+        add     x17, sp, #224
+        add     x18, sp, #256
+
 loop:
         subs      x4, x4, #1
-        INSTR    q0, [sp],  #64
-        INSTR    q1, [x25], #64
-        INSTR    q2, [x27], #64
-        INSTR    q3, [x28], #64
-        INSTR    q4, [x16], #64
-        INSTR    q5, [x10], #64
-        INSTR    q6, [x11], #64
-        INSTR    q6, [x12], #64
-        INSTR    q6, [x13], #64
-        INSTR    q7, [sp],  #-64 
-        INSTR    q8, [x25], #-64
-        INSTR    q9, [x27], #-64 
-        INSTR    q10, [x28], #-64
-        INSTR    q11, [x16], #-64
-        INSTR    q12, [x10], #-64
-        INSTR    q13, [x11], #-64
-        INSTR    q6, [x12], #-64
-        INSTR    q6, [x13], #-64
+        INSTR    q0, [sp],  #16
+        INSTR    q1, [x11], #16
+        INSTR    q2, [x12], #16
+        INSTR    q3, [x13], #16
+        INSTR    q4, [x14], #16
+        INSTR    q5, [x15], #16
+        INSTR    q6, [x16], #16
+        INSTR    q7, [x17], #16
+        INSTR    q8, [x18], #16
+        INSTR    q9, [sp],  #-16 
+        INSTR    q10, [x11], #-16
+        INSTR    q11, [x12], #-16 
+        INSTR    q12, [x13], #-16
+        INSTR    q13, [x14], #-16
+        INSTR    q14, [x15], #-16
+        INSTR    q15, [x16], #-16
+        INSTR    q16, [x17], #-16
+        INSTR    q17, [x18], #-16
         bne       loop
 done:
-        mov     sp, x24
-        add     sp, sp, #-128
         # pop callee-save registers from stack
         ldp x19, x20, [sp, 16]
         ldp x21, x22, [sp, 32]
