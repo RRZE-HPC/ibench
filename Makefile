@@ -1,4 +1,5 @@
-COMPILER=ARMGCC
+# Possible targets:	GCC, ICC, MIC, POWER8, ARMGCC
+COMPILER=ICC
 
 TARGET 	= 	ibench
 SRC_DIR = 	src
