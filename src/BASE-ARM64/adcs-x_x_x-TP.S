@@ -1,0 +1,57 @@
+#define INSTR adcs
+#define NINST 15
+#define N x0
+
+.globl ninst
+.data
+ninst:
+.long NINST
+.text
+.globl latency
+.type latency, @function
+.align 2
+latency:
+    # push callee-save register onto stack
+
+    stp     x19, x20, [sp, -96]!
+    stp     x21, x22, [sp, 16]
+    stp     x23, x24, [sp, 32]
+    stp     x25, x26, [sp, 48]
+    stp     x27, x28, [sp, 64]
+    stp     x29, x30, [sp, 80]
+    
+    mov     x4, N
+
+loop:
+	INSTR    x0, x1, x1
+	INSTR    x2, x3, x3
+	INSTR    x30, x5, x5
+	INSTR    x6, x7, x7
+	INSTR    x8, x9, x9
+	INSTR    x10, x11, x11
+	INSTR    x12, x13, x13
+	INSTR    x14, x15, x15
+	INSTR    x16, x17, x17
+	INSTR    x18, x19, x19
+	INSTR    x20, x21, x21
+	INSTR    x22, x23, x23
+	INSTR    x24, x25, x25
+	INSTR    x26, x27, x27
+	INSTR    x28, x29, x29
+
+    subs    x4, x4, #1
+    bne     loop
+done:
+
+    # pop callee-save registers from stack
+    ldp     x19, x20, [sp]
+    ldp     x21, x22, [sp, 16]
+    ldp     x23, x24, [sp, 32]
+    ldp     x25, x26, [sp, 48]
+    ldp     x27, x28, [sp, 64]
+    ldp     x29, x30, [sp, 80]
+    add     sp, sp, #96
+
+
+    ret
+.size latency, .-latency

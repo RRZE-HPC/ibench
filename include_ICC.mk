@@ -1,6 +1,7 @@
 CC 		= 	icc
 AS 		= 	icc
-CFLAGS 	= 	-O3
+CFLAGS 	= 	-O3 -diag-disable=10441
+ASFLAGS = 	-O3 -diag-disable=10441
 LFLAGS 	=  	-shared
 
 KERNELS	+= 	$(patsubst $(SRC_DIR)/%.S, %.so, $(wildcard $(SRC_DIR)/scalar/*.S))

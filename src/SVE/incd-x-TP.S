@@ -1,5 +1,5 @@
 #define INSTR incd
-#define NINST 16
+#define NINST 12
 #define N x0
 
 .arch armv8.2-a+sve
@@ -38,14 +38,10 @@ loop:
         INSTR    x11
         INSTR    x12
         INSTR    x13
-        INSTR    x6
-        INSTR    x7
-        INSTR    x8
-        INSTR    x9
-        INSTR    x10
-        INSTR    x11
-        INSTR    x12
-        INSTR    x13
+        INSTR    x0
+        INSTR    x1
+        INSTR    x2
+        INSTR    x3
         bne       loop
 done:
 

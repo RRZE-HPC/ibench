@@ -1,0 +1,51 @@
+#define INSTR addss
+#define NINST 10
+#define N edi
+#define i r8d
+
+
+.intel_syntax noprefix
+.globl ninst
+.data
+ninst:
+.long NINST
+.text
+.globl latency
+.type latency, @function
+.align 32
+latency:
+        push      rbp
+        mov       rbp, rsp
+        xor       i, i
+        test      N, N
+        jle       done
+        # create SP 1.0
+        vpcmpeqw xmm0, xmm0, xmm0       # all ones
+        vpsllq xmm0, xmm0, 54           # logical left shift: 11111110..0 (54 = 64 - (10 - 1))
+        vpsrlq xmm0, xmm0, 2            # logical right shift: 1 bit for sign; leading mantissa bit is zero
+        # copy SP 1.0
+        vmovaps xmm1, xmm0
+
+        # Mark registers as scalar
+        movsd xmm0, xmm0
+        movsd xmm1, xmm1
+
+loop:
+        inc       i
+        INSTR     xmm0, xmm1
+        INSTR     xmm2, xmm1
+        INSTR     xmm3, xmm1
+        cmp       i, N
+        INSTR     xmm4, xmm1
+        INSTR     xmm5, xmm1
+        INSTR     xmm6, xmm1
+        INSTR     xmm7, xmm1
+        INSTR     xmm8, xmm1
+        INSTR     xmm9, xmm1
+        INSTR     xmm10, xmm1
+        jl        loop
+done:
+        mov  rsp, rbp
+        pop rbp
+        ret
+.size latency, .-latency

@@ -1,4 +1,4 @@
-#define INSTR mla 
+#define INSTR mla
 #define NINST 6
 #define N x0
 

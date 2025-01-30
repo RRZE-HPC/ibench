@@ -1,5 +1,5 @@
 # Possible targets:	GCC, ICC, MIC, POWER8, ARMGCC
-COMPILER=ICC
+COMPILER=GCC
 
 TARGET 	= 	ibench
 SRC_DIR = 	src
@@ -11,13 +11,14 @@ include include_$(COMPILER).mk
 $(TARGET): ibench.c $(KDIRS) $(KERNELS)
 	$(Q)echo "===>  COMPILING $@"
 	$(Q)$(CC) $(CFLAGS) $< -o $@ -ldl 
+# $(Q)$(CC) $(CFLAGS) $(LIKWID_LIB) -llikwid $< -o $@ -ldl
 
 $(KDIRS):
 	$(Q)mkdir $(KDIRS)
 
 %.so:
 	$(Q)echo "===>  ASSEMBLING $@"
-	$(Q)$(AS) $(LFLAGS) $(patsubst %.so, $(SRC_DIR)/%.S, $@) -o $@
+	$(Q)$(AS) $(ASFLAGS) $(LFLAGS) $(patsubst %.so, $(SRC_DIR)/%.S, $@) -o $@
 
 .PHONY: clean
 
