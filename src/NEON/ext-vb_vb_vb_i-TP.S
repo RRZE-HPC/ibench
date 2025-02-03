@@ -52,14 +52,14 @@ latency:
     mov     x4, N
 
 loop:
-	INSTR    v5.8b, v6.8b, v7.8b, #12
-	INSTR    v8.8b, v9.8b, v10.8b, #12
-	INSTR    v11.8b, v12.8b, v13.8b, #12
-	INSTR    v14.8b, v15.8b, v19.8b, #12
-	INSTR    v20.8b, v21.8b, v22.8b, #12
-	INSTR    v23.8b, v24.8b, v25.8b, #12
-	INSTR    v26.8b, v27.8b, v28.8b, #12
-	INSTR    v5.8b, v6.8b, v7.8b, #12
+	INSTR    v5.8b, v6.8b, v7.8b, #2
+	INSTR    v8.8b, v9.8b, v10.8b, #2
+	INSTR    v11.8b, v12.8b, v13.8b, #2
+	INSTR    v14.8b, v15.8b, v19.8b, #2
+	INSTR    v20.8b, v21.8b, v22.8b, #2
+	INSTR    v23.8b, v24.8b, v25.8b, #2
+	INSTR    v26.8b, v27.8b, v28.8b, #2
+	INSTR    v5.8b, v6.8b, v7.8b, #2
 
     subs    x4, x4, #1
     bne     loop
