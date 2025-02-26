@@ -1,4 +1,4 @@
-#define INSTR cmpq
+#define INSTR cmp
 #define NINST 32
 #define N edi
 #define i r8d

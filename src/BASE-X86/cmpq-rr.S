@@ -55,7 +55,7 @@ latency:
 		add rbx, rax
 		# Create DP 0.5
 		div rax
-		movq rcx, rax
+		mov rcx, rax
 		vmovq rax, xmm0
 loop:
 		inc      i

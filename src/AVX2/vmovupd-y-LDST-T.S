@@ -37,25 +37,25 @@ latency:
         push r15
 loop:
 		inc      i
-        #mov      r10, [rip+PI]
+        #vmovupd      ymm10, [rip+PI]
 		INSTR    ymm3, [rip+PI]
 		INSTR    ymm4, [rip+PI]
 		#INSTR    [rip+IP], ymm5
-        #mov       [rip+IP], r12
+        #vmovupd       [rip+IP], ymm12
 		#INSTR    ymm6, [rip+PI]
 		#INSTR    ymm7, [rip+PI]
 		#INSTR    [rip+IP], ymm8
-        mov       [rip+IP], r13
+        vmovupd       [rip+PI], ymm13
 
 		INSTR    ymm9, [rip+PI]
-        #mov      r11, [rip+PI]
+        #vmovupd      ymm11, [rip+PI]
 		INSTR    ymm10, [rip+PI]
 		#INSTR    [rip+IP], ymm11
-        #mov       [rip+IP], r14
+        #vmovupd       [rip+IP], ymm14
 		#INSTR    ymm12, [rip+PI]
 		#INSTR    ymm13, [rip+PI]
 		#INSTR    [rip+IP], ymm14
-        mov       [rip+IP], r15
+        vmovupd       [rip+PI], ymm15
 		
         #INSTR    ymm15, [rip+PI]
 		#INSTR    ymm16, [rip+PI]

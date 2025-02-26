@@ -1,4 +1,4 @@
-#define INSTR mov
+#define INSTR adc
 #define NINST 32
 #define N edi
 #define i r8d
@@ -48,49 +48,40 @@ latency:
 		xor     r13, r13
 		xor     r14, r14
 		xor     r15, r15
-		# copy DP 1.0
-		vmovq rax, xmm0
-		vmovq rbx, xmm0
-		# Create DP 2.0
-		add rbx, rax
-		# Create DP 0.5
-		div rax
-		mov rcx, rax
-		vmovq rax, xmm0
 loop:
 		inc      i
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
-		INSTR    [rip+PI], eax
+		INSTR    rdx, 8 
+		INSTR    r9,  8
+		INSTR    r10, 8 
+		INSTR    r11, 8
+		INSTR    r12, 8
+		INSTR    r13, 8
+		INSTR    r14, 8
+		INSTR    r15, 8
+		INSTR    rdx, 8
+		INSTR    r9,  8
+		INSTR    r10, 8
+		INSTR    r11, 8
+		INSTR    r12, 8
+		INSTR    r13, 8
+		INSTR    r14, 8
+		INSTR    r15, 8
+		INSTR    rdx, 8
+		INSTR    r9,  8
+		INSTR    r10, 8
+		INSTR    r11, 8
+		INSTR    r12, 8
+		INSTR    r13, 8
+		INSTR    r14, 8
+		INSTR    r15, 8
+		INSTR    rdx, 8
+		INSTR    r9,  8
+		INSTR    r10, 8
+		INSTR    r11, 8
+		INSTR    r12, 8
+		INSTR    r13, 8
+		INSTR    r14, 8
+		INSTR    r15, 8
 		cmp      i, N
 		jl       loop
 		pop     r15

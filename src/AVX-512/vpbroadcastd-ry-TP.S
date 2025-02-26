@@ -24,13 +24,13 @@ latency:
         jle       done
 loop:
         inc       i
-        INSTR     r9d,  ymm6
-        INSTR     r10d, ymm7
-        INSTR     r11d, ymm8
+        INSTR     ymm6,  r9d
+        INSTR     ymm7,  r10d
+        INSTR     ymm8,  r11d
         cmp       i, N
-        INSTR     r12d, ymm9
-        INSTR     r13d, ymm10
-        INSTR     r14d, ymm11
+        INSTR     ymm9,  r12d
+        INSTR     ymm10, r13d
+        INSTR     ymm11, r14d
         jl        loop
 done:
         mov  rsp, rbp
