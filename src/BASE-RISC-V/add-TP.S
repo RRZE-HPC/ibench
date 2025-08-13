@@ -26,21 +26,6 @@ latency:
     sd      s10, 80(sp)
     sd      s11, 88(sp)
 
-    # ------------------------------------------------------
-    # Configure the Vector Unit
-    # li a1, 4       -> Load immediate value 4 into a1
-    # vsetvli t0,a1,e32,m1,ta,ma
-    #   - Sets VL=4 (4 vector elements active)
-    #   - e32 = 32-bit elements
-    #   - m1  = LMUL=1 (no grouping of registers)
-    #   - ta,ma = tail-agnostic, mask-agnostic
-    # ------------------------------------------------------
-    li      a1, 4
-    vsetvli t0, a1, e64, m1, ta, ma
-
-    vmv.v.i v0, 1         # v0 = {1,1}
-    vmv.v.i v1, 2         # v1 = {2,2}
-
     # Initialize loop counter
     li      t0, 0
     blez    N, done
