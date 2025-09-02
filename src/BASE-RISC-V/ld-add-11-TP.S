@@ -1,5 +1,5 @@
 #define INSTR ld
-#define NINST 88
+#define NINST 44
 #define N a0
 
 .globl ninst
@@ -42,97 +42,96 @@ loop:
     addi    t0, t0, 1           # i++
 
     INSTR   a3, 0(t1)
-    INSTR   a4, 8(t1)
+    add     a4, a1, a2
     INSTR   a5, 16(t1)
-    INSTR   a6, 24(t1)
+    add     a6, a1, a2
     INSTR   a7, 32(t1)
-    INSTR   t2, 40(t1)
+    add     a7, a1, a2
     INSTR   t3, 48(t1)
-    INSTR   t4, 56(t1)
+    add     t4, a1, a2
     INSTR   t5, 64(t1)
-    INSTR   t6, 72(t1)
+    add     t6, a1, a2
     INSTR   s0, 80(t1)
-    INSTR   s1, 88(t1)
+    add     s1, a1, a2
     INSTR   s2, 96(t1)
-    INSTR   s3, 104(t1)
+    add     s3, a1, a2
     INSTR   s4, 112(t1)
-    INSTR   s5, 120(t1)
+    add     s5, a1, a2
     INSTR   s6, 128(t1)
-    INSTR   s7, 136(t1)
+    add     s7, a1, a2
     INSTR   s8, 144(t1)
-    INSTR   s9, 152(t1)
+    add     s9, a1, a2
     INSTR   s10, 160(t1)
-    INSTR   s11, 168(t1)
+    add     s11, a1, a2
 
     INSTR   a3, 0(t1)
-    INSTR   a4, 8(t1)
+    add     a4, a1, a2
     INSTR   a5, 16(t1)
-    INSTR   a6, 24(t1)
+    add     a6, a1, a2
     INSTR   a7, 32(t1)
-    INSTR   t2, 40(t1)
+    add     a7, a1, a2
     INSTR   t3, 48(t1)
-    INSTR   t4, 56(t1)
+    add     t4, a1, a2
     INSTR   t5, 64(t1)
-    INSTR   t6, 72(t1)
+    add     t6, a1, a2
     INSTR   s0, 80(t1)
-    INSTR   s1, 88(t1)
+    add     s1, a1, a2
     INSTR   s2, 96(t1)
-    INSTR   s3, 104(t1)
+    add     s3, a1, a2
     INSTR   s4, 112(t1)
-    INSTR   s5, 120(t1)
+    add     s5, a1, a2
     INSTR   s6, 128(t1)
-    INSTR   s7, 136(t1)
+    add     s7, a1, a2
     INSTR   s8, 144(t1)
-    INSTR   s9, 152(t1)
+    add     s9, a1, a2
     INSTR   s10, 160(t1)
-    INSTR   s11, 168(t1)
+    add     s11, a1, a2
 
     INSTR   a3, 0(t1)
-    INSTR   a4, 8(t1)
+    add     a4, a1, a2
     INSTR   a5, 16(t1)
-    INSTR   a6, 24(t1)
+    add     a6, a1, a2
     INSTR   a7, 32(t1)
-    INSTR   t2, 40(t1)
+    add     a7, a1, a2
     INSTR   t3, 48(t1)
-    INSTR   t4, 56(t1)
+    add     t4, a1, a2
     INSTR   t5, 64(t1)
-    INSTR   t6, 72(t1)
+    add     t6, a1, a2
     INSTR   s0, 80(t1)
-    INSTR   s1, 88(t1)
+    add     s1, a1, a2
     INSTR   s2, 96(t1)
-    INSTR   s3, 104(t1)
+    add     s3, a1, a2
     INSTR   s4, 112(t1)
-    INSTR   s5, 120(t1)
+    add     s5, a1, a2
     INSTR   s6, 128(t1)
-    INSTR   s7, 136(t1)
+    add     s7, a1, a2
     INSTR   s8, 144(t1)
-    INSTR   s9, 152(t1)
+    add     s9, a1, a2
     INSTR   s10, 160(t1)
-    INSTR   s11, 168(t1)
+    add     s11, a1, a2
 
     INSTR   a3, 0(t1)
-    INSTR   a4, 8(t1)
+    add     a4, a1, a2
     INSTR   a5, 16(t1)
-    INSTR   a6, 24(t1)
+    add     a6, a1, a2
     INSTR   a7, 32(t1)
-    INSTR   t2, 40(t1)
+    add     a7, a1, a2
     INSTR   t3, 48(t1)
-    INSTR   t4, 56(t1)
+    add     t4, a1, a2
     INSTR   t5, 64(t1)
-    INSTR   t6, 72(t1)
+    add     t6, a1, a2
     INSTR   s0, 80(t1)
-    INSTR   s1, 88(t1)
+    add     s1, a1, a2
     INSTR   s2, 96(t1)
-    INSTR   s3, 104(t1)
+    add     s3, a1, a2
     INSTR   s4, 112(t1)
-    INSTR   s5, 120(t1)
+    add     s5, a1, a2
     INSTR   s6, 128(t1)
-    INSTR   s7, 136(t1)
+    add     s7, a1, a2
     INSTR   s8, 144(t1)
-    INSTR   s9, 152(t1)
+    add     s9, a1, a2
     INSTR   s10, 160(t1)
-    INSTR   s11, 168(t1)
-
+    add     s11, a1, a2
     blt     t0, N, loop
 
 done:

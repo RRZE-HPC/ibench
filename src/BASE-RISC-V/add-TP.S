@@ -1,5 +1,5 @@
 #define INSTR add
-#define NINST 6
+#define NINST 80
 #define N a0
 
 .globl ninst
@@ -32,13 +32,90 @@ latency:
 
 loop:
     addi    t0, t0, 1           # i++
+    
+    INSTR   a3, a1, a2
+    INSTR   a4, a1, a2
+    INSTR   a5, a1, a2
+    INSTR   a6, a1, a2
+    INSTR   a7, a1, a2
+    INSTR   t1, a1, a2
+    INSTR   t2, a1, a2
+    INSTR   t3, a1, a2
+    INSTR   t4, a1, a2
+    INSTR   t5, a1, a2
+    INSTR   t6, a1, a2
+    INSTR   s0, a1, a2
+    INSTR   s1, a1, a2
+    INSTR   s2, a1, a2
+    INSTR   s3, a1, a2
+    INSTR   s4, a1, a2
+    INSTR   s5, a1, a2
+    INSTR   s6, a1, a2
+    INSTR   s7, a1, a2
+    INSTR   s8, a1, a2
 
     INSTR   a3, a1, a2
     INSTR   a4, a1, a2
     INSTR   a5, a1, a2
     INSTR   a6, a1, a2
     INSTR   a7, a1, a2
+    INSTR   t1, a1, a2
     INSTR   t2, a1, a2
+    INSTR   t3, a1, a2
+    INSTR   t4, a1, a2
+    INSTR   t5, a1, a2
+    INSTR   t6, a1, a2
+    INSTR   s0, a1, a2
+    INSTR   s1, a1, a2
+    INSTR   s2, a1, a2
+    INSTR   s3, a1, a2
+    INSTR   s4, a1, a2
+    INSTR   s5, a1, a2
+    INSTR   s6, a1, a2
+    INSTR   s7, a1, a2
+    INSTR   s8, a1, a2
+
+    INSTR   a3, a1, a2
+    INSTR   a4, a1, a2
+    INSTR   a5, a1, a2
+    INSTR   a6, a1, a2
+    INSTR   a7, a1, a2
+    INSTR   t1, a1, a2
+    INSTR   t2, a1, a2
+    INSTR   t3, a1, a2
+    INSTR   t4, a1, a2
+    INSTR   t5, a1, a2
+    INSTR   t6, a1, a2
+    INSTR   s0, a1, a2
+    INSTR   s1, a1, a2
+    INSTR   s2, a1, a2
+    INSTR   s3, a1, a2
+    INSTR   s4, a1, a2
+    INSTR   s5, a1, a2
+    INSTR   s6, a1, a2
+    INSTR   s7, a1, a2
+    INSTR   s8, a1, a2
+
+    INSTR   a3, a1, a2
+    INSTR   a4, a1, a2
+    INSTR   a5, a1, a2
+    INSTR   a6, a1, a2
+    INSTR   a7, a1, a2
+    INSTR   t1, a1, a2
+    INSTR   t2, a1, a2
+    INSTR   t3, a1, a2
+    INSTR   t4, a1, a2
+    INSTR   t5, a1, a2
+    INSTR   t6, a1, a2
+    INSTR   s0, a1, a2
+    INSTR   s1, a1, a2
+    INSTR   s2, a1, a2
+    INSTR   s3, a1, a2
+    INSTR   s4, a1, a2
+    INSTR   s5, a1, a2
+    INSTR   s6, a1, a2
+    INSTR   s7, a1, a2
+    INSTR   s8, a1, a2
 
     blt     t0, N, loop
 
