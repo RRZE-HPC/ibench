@@ -1,0 +1,18 @@
+# so directories
+./AVX2/
+./AVX-512/
+./AVX-512-FP16/
+./BASE-ARM64/
+./BASE-X86/
+./NEON/
+./SSE4.2/
+./SVE/
+
+# binary
+ibench
+
+# output files
+*.out
+
+# swap files
+*.swp
