@@ -1,5 +1,5 @@
-#define INSTR vextracti128
-#define NINST 6
+#define INSTR vextractf128
+#define NINST 32
 #define N edi
 #define i r8d
 
@@ -37,13 +37,38 @@ latency:
 		vdivpd ymm2, ymm0, ymm1
 loop:
 		inc      i
-        INSTR  xmm0, ymm0, 0x1
-        INSTR  xmm0, ymm0, 0x1
-        INSTR  xmm0, ymm0, 0x1
-        INSTR  xmm0, ymm0, 0x1
-        INSTR  xmm0, ymm0, 0x1
-        INSTR  xmm0, ymm0, 0x1
-
+		INSTR    xmm3, ymm0, 1
+		INSTR    xmm4, ymm1, 2
+		INSTR    xmm5, ymm2, 13
+		INSTR    xmm6, ymm0, 1
+		INSTR    xmm7, ymm1, 2
+		INSTR    xmm8, ymm2, 13
+		INSTR    xmm9, ymm0, 1
+		INSTR    xmm10, ymm1, 2
+		INSTR    xmm11, ymm2, 13
+		INSTR    xmm12, ymm0, 1
+		INSTR    xmm13, ymm1, 2
+		INSTR    xmm14, ymm2, 13
+		INSTR    xmm15, ymm0, 1
+		INSTR    xmm3, ymm1, 2
+		INSTR    xmm4, ymm2, 13
+		INSTR    xmm5, ymm0, 1
+		INSTR    xmm6, ymm1, 2
+		INSTR    xmm7, ymm2, 13
+		INSTR    xmm8, ymm0, 1
+		INSTR    xmm9, ymm1, 2
+		INSTR    xmm10, ymm2, 13
+		INSTR    xmm11, ymm0, 1
+		INSTR    xmm12, ymm1, 2
+		INSTR    xmm13, ymm2, 13
+		INSTR    xmm14, ymm0, 1
+		INSTR    xmm15, ymm1, 2
+		INSTR    xmm3, ymm2, 13
+		INSTR    xmm4, ymm0, 1
+		INSTR    xmm5, ymm1, 2
+		INSTR    xmm6, ymm2, 13
+		INSTR    xmm7, ymm0, 1
+		INSTR    xmm8, ymm1, 2
 		cmp      i, N
 		jl       loop
 done:

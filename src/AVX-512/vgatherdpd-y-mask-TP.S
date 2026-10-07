@@ -33,12 +33,12 @@ latency:
         kxnorb k1, k1, k1
 loop:
 		inc      i
-		INSTR    zmm0{k1}, [rsp + ymm2*8]
-		INSTR    zmm1{k1}, [rsp + ymm2*8]
-		INSTR    zmm3{k1}, [rsp + ymm2*8]
-		INSTR    zmm4{k1}, [rsp + ymm2*8]
-		INSTR    zmm5{k1}, [rsp + ymm2*8]
-		INSTR    zmm6{k1}, [rsp + ymm2*8]
+		INSTR    ymm0{k1}, [rsp + xmm2*8]
+		INSTR    ymm1{k1}, [rsp + xmm2*8]
+		INSTR    ymm3{k1}, [rsp + xmm2*8]
+		INSTR    ymm4{k1}, [rsp + xmm2*8]
+		INSTR    ymm5{k1}, [rsp + xmm2*8]
+		INSTR    ymm6{k1}, [rsp + xmm2*8]
 		cmp      i, N
 		jl       loop
 done:

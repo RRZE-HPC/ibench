@@ -1,4 +1,4 @@
-#define INSTR vfmadd213sd
+#define INSTR vscalefss
 #define NINST 6
 #define N edi
 #define i r8d
@@ -12,7 +12,7 @@ ninst:
 .text
 .globl latency
 .type latency, @function
-.align 32
+.align 64
 latency:
         push      rbp
         mov       rbp, rsp
@@ -21,27 +21,28 @@ latency:
         jle       done
         # create SSE DP 1.0
         vpcmpeqw xmm0, xmm0, xmm0       # all ones
-        vpsllq xmm0, xmm0, 54           # logical left shift: 11111110..0 (54 = 64 - (11 - 1))
+        vpsllq xmm0, xmm0, 54           # logical left shift: 11111110..0 (54 = 64 - (10 - 1))
         vpsrlq xmm0, xmm0, 2            # logical right shift: 1 bit for sign; leading mantissa bit is zero
         # expand from SSE to AVX
         vinsertf128 ymm0, ymm0, xmm0, 0x1
         # expand from AVX to AVX-512
         vinsertf64x4 zmm0, zmm0, ymm0, 0x1
-        # copy SP 1.0
-        vmovaps zmm1, zmm0
+        # copy DP 1.0
+        vmovapd zmm1, zmm0
 
-        # Mark registers AVX-512
-        vmovaps zmm0, zmm0
-        vmovaps zmm1, zmm1
+        # Mark registers as AVX-512
+        vmovapd zmm0, zmm0
+        vmovapd zmm1, zmm1
+
 loop:
         inc       i
-        INSTR     zmm0, zmm1, zmm1
-        INSTR     zmm0, zmm1, zmm1
-        INSTR     zmm0, zmm1, zmm1
+        INSTR     xmm0, xmm0, xmm1
+        INSTR     xmm0, xmm0, xmm1
+        INSTR     xmm0, xmm0, xmm1
         cmp       i, N
-        INSTR     zmm0, zmm1, zmm1
-        INSTR     zmm0, zmm1, zmm1
-        INSTR     zmm0, zmm1, zmm1
+        INSTR     xmm0, xmm0, xmm1
+        INSTR     xmm0, xmm0, xmm1
+        INSTR     xmm0, xmm0, xmm1
         jl        loop
 done:
         mov  rsp, rbp

@@ -1,5 +1,5 @@
-#define INSTR adc
-#define NINST 32
+#define INSTR and
+#define NINST 64
 #define N edi
 #define i r8d
 
@@ -50,73 +50,70 @@ latency:
 		xor     r15, r15
 loop:
 		inc      i
-		INSTR    rdx, 8 
-        clc
-		INSTR    r9,  8
-        clc
-		INSTR    r10, 8 
-        clc
-		INSTR    r11, 8
-        clc
-		INSTR    r12, 8
-        clc
-		INSTR    r13, 8
-        clc
-		INSTR    r14, 8
-        clc
-		INSTR    r15, 8
-        clc
-		
-        INSTR    rdx, 8
-        clc
-		INSTR    r9,  8
-        clc
-		INSTR    r10, 8
-        clc
-		INSTR    r11, 8
-        clc
-		INSTR    r12, 8
-        clc
-		INSTR    r13, 8
-        clc
-		INSTR    r14, 8
-        clc
-		INSTR    r15, 8
-        clc
-		
-        INSTR    rdx, 8
-        clc
-		INSTR    r9,  8
-        clc
-		INSTR    r10, 8
-        clc
-		INSTR    r11, 8
-        clc
-		INSTR    r12, 8
-        clc
-		INSTR    r13, 8
-        clc
-		INSTR    r14, 8
-        clc
-		INSTR    r15, 8
-        clc
-		
-        INSTR    rdx, 8
-        clc
-		INSTR    r9,  8
-        clc
-		INSTR    r10, 8
-        clc
-		INSTR    r11, 8
-        clc
-		INSTR    r12, 8
-        clc
-		INSTR    r13, 8
-        clc
-		INSTR    r14, 8
-        clc
-		INSTR    r15, 8
-        clc
+		INSTR    rdx, 1
+		INSTR    r9, 2
+		INSTR    r10, 13
+		INSTR    r11, 1
+		INSTR    r12, 2
+		INSTR    r13, 13
+		INSTR    r14, 1
+		INSTR    r15, 2
+		INSTR    rdx, 13
+		INSTR    r9, 1
+		INSTR    r10, 2
+		INSTR    r11, 13
+		INSTR    r12, 1
+		INSTR    r13, 2
+		INSTR    r14, 13
+		INSTR    r15, 1
+		INSTR    rdx, 2
+		INSTR    r9, 13
+		INSTR    r10, 1
+		INSTR    r11, 2
+		INSTR    r12, 13
+		INSTR    r13, 1
+		INSTR    r14, 2
+		INSTR    r15, 13
+		INSTR    rdx, 1
+		INSTR    r9, 2
+		INSTR    r10, 13
+		INSTR    r11, 1
+		INSTR    r12, 2
+		INSTR    r13, 13
+		INSTR    r14, 1
+		INSTR    r15, 2
+    	INSTR    rdx, 1
+		INSTR    r9, 2
+		INSTR    r10, 13
+		INSTR    r11, 1
+		INSTR    r12, 2
+		INSTR    r13, 13
+		INSTR    r14, 1
+		INSTR    r15, 2
+		INSTR    rdx, 13
+		INSTR    r9, 1
+		INSTR    r10, 2
+		INSTR    r11, 13
+		INSTR    r12, 1
+		INSTR    r13, 2
+		INSTR    r14, 13
+		INSTR    r15, 1
+		INSTR    rdx, 2
+		INSTR    r9, 13
+		INSTR    r10, 1
+		INSTR    r11, 2
+		INSTR    r12, 13
+		INSTR    r13, 1
+		INSTR    r14, 2
+		INSTR    r15, 13
+		INSTR    rdx, 1
+		INSTR    r9, 2
+		INSTR    r10, 13
+		INSTR    r11, 1
+		INSTR    r12, 2
+		INSTR    r13, 13
+		INSTR    r14, 1
+		INSTR    r15, 2
 		cmp      i, N
 		jl       loop
 		pop     r15

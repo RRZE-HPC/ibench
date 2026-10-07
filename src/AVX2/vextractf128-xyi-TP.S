@@ -1,5 +1,5 @@
-#define INSTR vgatherdpd 
-#define NINST 6
+#define INSTR vextractf128
+#define NINST 12
 #define N edi
 #define i r8d
 
@@ -33,12 +33,19 @@ latency:
         kxnorb k1, k1, k1
 loop:
 		inc      i
-		INSTR    zmm0{k1}, [rsp + ymm2*8]
-		INSTR    zmm1{k1}, [rsp + ymm2*8]
-		INSTR    zmm3{k1}, [rsp + ymm2*8]
-		INSTR    zmm4{k1}, [rsp + ymm2*8]
-		INSTR    zmm5{k1}, [rsp + ymm2*8]
-		INSTR    zmm6{k1}, [rsp + ymm2*8]
+        INSTR  xmm1, ymm0, 0x1
+        INSTR  xmm2, ymm0, 0x1
+        INSTR  xmm3, ymm0, 0x1
+        INSTR  xmm4, ymm0, 0x1
+        INSTR  xmm5, ymm0, 0x1
+        INSTR  xmm6, ymm0, 0x1
+        INSTR  xmm7, ymm0, 0x1
+        INSTR  xmm8, ymm0, 0x1
+        INSTR  xmm9, ymm0, 0x1
+        INSTR  xmm10, ymm0, 0x1
+        INSTR  xmm11, ymm0, 0x1
+        INSTR  xmm12, ymm0, 0x1
+
 		cmp      i, N
 		jl       loop
 done:

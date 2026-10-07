@@ -34,11 +34,11 @@ latency:
 loop:
 		inc      i
 		INSTR    ymm0{k1}, [rsp + ymm2*8]
-		INSTR    ymm0{k1}, [rsp + ymm2*8]
-		INSTR    ymm0{k1}, [rsp + ymm2*8]
-		INSTR    ymm0{k1}, [rsp + ymm2*8]
-		INSTR    ymm0{k1}, [rsp + ymm2*8]
-		INSTR    ymm0{k1}, [rsp + ymm2*8]
+		INSTR    ymm1{k1}, [rsp + ymm2*8]
+		INSTR    ymm3{k1}, [rsp + ymm2*8]
+		INSTR    ymm4{k1}, [rsp + ymm2*8]
+		INSTR    ymm5{k1}, [rsp + ymm2*8]
+		INSTR    ymm6{k1}, [rsp + ymm2*8]
 		cmp      i, N
 		jl       loop
 done:

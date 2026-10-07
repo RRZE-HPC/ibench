@@ -1,4 +1,5 @@
-#define INSTR vgatherdpd 
+#define INSTR vpsrlw
+#define ALTI vaddpd 
 #define NINST 6
 #define N edi
 #define i r8d
@@ -9,13 +10,13 @@
 .data
 ninst:
 .long NINST
-.align 64
+.align 32
 PI:
-.long  0xffffffff, 0xffffffff, 0xffffffff,0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff  
+.long  0xf01b866e, 0x400921f9, 0xf01b866e, 0x400921f9, 0xf01b866e, 0x400921f9, 0xf01b866e, 0x400921f9, 0xf01b866e, 0x400921f9, 0xf01b866e, 0x400921f9, 0xf01b866e, 0x400921f9, 0xf01b866e, 0x400921f9
 .text
 .globl latency
 .type latency, @function
-.align 64
+.align 32
 latency:
 		push      rbp
 		mov       rbp, rsp
@@ -26,19 +27,14 @@ latency:
 		vpcmpeqw xmm0, xmm0, xmm0		# all ones
 		vpsllq xmm0, xmm0, 54			# logical left shift: 11111110..0 (54=64-(10-1))
 		vpsrlq xmm0, xmm0, 2			# logical right shift: 1 bit for sign; leading mantissa bit is zero
-		# expand from SSE to AVX
-		vinsertf128 ymm0, ymm0, xmm0, 0x1
-        vpcmpeqq ymm2, ymm2, ymm2
-		vpxorq xmm1, xmm1, xmm1
-        kxnorb k1, k1, k1
 loop:
 		inc      i
-		INSTR    zmm0{k1}, [rsp + ymm2*8]
-		INSTR    zmm1{k1}, [rsp + ymm2*8]
-		INSTR    zmm3{k1}, [rsp + ymm2*8]
-		INSTR    zmm4{k1}, [rsp + ymm2*8]
-		INSTR    zmm5{k1}, [rsp + ymm2*8]
-		INSTR    zmm6{k1}, [rsp + ymm2*8]
+		INSTR    xmm2, xmm1, xmm0  
+		INSTR    xmm4, xmm1, xmm0 
+		INSTR    xmm6, xmm1, xmm0 
+		INSTR    xmm8, xmm1, xmm0 
+		INSTR    xmm10, xmm1, xmm0 
+		INSTR    xmm12, xmm1, xmm0 
 		cmp      i, N
 		jl       loop
 done:

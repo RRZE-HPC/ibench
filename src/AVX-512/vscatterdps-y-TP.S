@@ -1,4 +1,4 @@
-#define INSTR vgatherdpd 
+#define INSTR vscatterdps
 #define NINST 6
 #define N edi
 #define i r8d
@@ -9,13 +9,13 @@
 .data
 ninst:
 .long NINST
-.align 64
+.align 32
 PI:
 .long  0xffffffff, 0xffffffff, 0xffffffff,0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff  
 .text
 .globl latency
 .type latency, @function
-.align 64
+.align 32
 latency:
 		push      rbp
 		mov       rbp, rsp
@@ -33,12 +33,12 @@ latency:
         kxnorb k1, k1, k1
 loop:
 		inc      i
-		INSTR    zmm0{k1}, [rsp + ymm2*8]
-		INSTR    zmm1{k1}, [rsp + ymm2*8]
-		INSTR    zmm3{k1}, [rsp + ymm2*8]
-		INSTR    zmm4{k1}, [rsp + ymm2*8]
-		INSTR    zmm5{k1}, [rsp + ymm2*8]
-		INSTR    zmm6{k1}, [rsp + ymm2*8]
+		INSTR    [rsp + ymm2*8]{k1}, ymm0
+		INSTR    [rsp + ymm2*8]{k1}, ymm0
+		INSTR    [rsp + ymm2*8]{k1}, ymm0
+		INSTR    [rsp + ymm2*8]{k1}, ymm0
+		INSTR    [rsp + ymm2*8]{k1}, ymm0
+		INSTR    [rsp + ymm2*8]{k1}, ymm0
 		cmp      i, N
 		jl       loop
 done:
